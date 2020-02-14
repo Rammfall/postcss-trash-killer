@@ -1,0 +1,28 @@
+{
+  "name": "postcss-trash-killer",
+  "version": "0.0.1",
+  "description": "PostCSS plugin for removing useless css",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rammfall/postcss-trash-killer.git"
+  },
+  "keywords": [
+    "postcss",
+    "plugin",
+    "css",
+    "optimization"
+  ],
+  "author": "Bohdan Onatskyi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rammfall/postcss-trash-killer/issues"
+  },
+  "homepage": "https://github.com/Rammfall/postcss-trash-killer#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
