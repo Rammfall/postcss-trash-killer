@@ -23,6 +23,13 @@
   },
   "homepage": "https://github.com/Rammfall/postcss-trash-killer#readme",
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "postcss": "^7.0.26"
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
