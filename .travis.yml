@@ -1,0 +1,15 @@
+language: node_js
+dist: bionic
+
+node_js:
+  - 10
+
+install:
+  - npm ci
+
+cache: npm
+
+script:
+  - npm audit
+  - npm run lint
+  - npm run test
