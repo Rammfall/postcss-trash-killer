@@ -1,7 +1,7 @@
 const postcss = require('postcss');
 
 const DEFAULT_OPTIONS = {
-  whiteList: ['html', 'body']
+  whiteList: ['html', 'body', 'head']
 };
 
 module.exports = postcss.plugin('postcss-trash-killer', opts => {
