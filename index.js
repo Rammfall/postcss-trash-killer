@@ -5,9 +5,11 @@ const DEFAULT_OPTIONS = {
 };
 
 module.exports = postcss.plugin('postcss-trash-killer', opts => {
+  const { whiteList } = [...opts, ...DEFAULT_OPTIONS];
   return root => {
     root.walkDecls(decl => {
-      console.log(decl);
+      // eslint-disable-next-line no-console
+      console.log(whiteList, decl);
     });
   };
 });
