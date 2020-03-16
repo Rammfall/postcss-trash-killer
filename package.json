@@ -32,12 +32,15 @@
     "eslint-plugin-jest": "^23.7.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "postcss": "^7.0.27",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "array.prototype.flatmap": "^1.2.3",
-    "postcss": "^7.0.26"
+    "array.prototype.flatmap": "^1.2.3"
+  },
+  "peerDependencies": {
+    "postcss": "^7.0.27"
   },
   "prettier": {
     "singleQuote": true

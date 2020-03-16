@@ -3,10 +3,6 @@ const path = require('path');
 const postcss = require('postcss');
 const flatMap = require('array.prototype.flatmap');
 
-if (!Array.flatMap) {
-  Array.flatMap = flatMap;
-}
-
 const REGEX = /\[.*?\]|[:*][a-z-_:]+|[^a-z-_]+/g;
 const DEFAULT_OPTIONS = {
   path: 'app/',
@@ -14,8 +10,9 @@ const DEFAULT_OPTIONS = {
   whitelist: ['body', 'html', 'slick', 'slick-track', 'aos']
 };
 
-const getFiles = (pathName, exts) =>
-  fs.readdirSync(pathName).flatMap(file => {
+const getFiles = (pathName, exts) => {
+  const files = fs.readdirSync(pathName);
+  return flatMap(files, file => {
     const filename = path.join(pathName, file);
     if (
       fs.lstatSync(filename).isDirectory() &&
@@ -28,6 +25,7 @@ const getFiles = (pathName, exts) =>
     }
     return [];
   });
+};
 
 const getContent = files => files.map(f => fs.readFileSync(f, 'utf8')).join();
 const getWords = content =>
