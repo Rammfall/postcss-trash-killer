@@ -6,10 +6,10 @@ Your css is increasing after each iteration? Coverage of pages smaller 5%? This 
 
 ## Installation
 
-```bash
+```sh
 npm i -D postcss-trash-killer
 ```
-```bash
+```sh
 yarn add --save postcss-trash-killer
 ```
 
