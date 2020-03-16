@@ -36,6 +36,7 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
+    "array.prototype.flatmap": "^1.2.3",
     "postcss": "^7.0.26"
   },
   "prettier": {

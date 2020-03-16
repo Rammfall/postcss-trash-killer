@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
+const flatMap = require('array.prototype.flatmap');
+
+if (!Array.flatMap) {
+  Array.flatMap = flatMap;
+}
 
 const REGEX = /\[.*?\]|[:*][a-z-_:]+|[^a-z-_]+/g;
 const DEFAULT_OPTIONS = {
