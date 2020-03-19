@@ -1,10 +1,10 @@
 {
   "name": "postcss-trash-killer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "PostCSS plugin for removing useless css",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "npm run lint:js",
     "lint:js": "eslint --fix \"**/*.js\""
   },
@@ -55,6 +55,13 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "statements": 100
+      }
     }
   }
 }
