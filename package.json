@@ -1,6 +1,6 @@
 {
   "name": "postcss-trash-killer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "PostCSS plugin for removing useless css",
   "main": "index.js",
   "scripts": {
