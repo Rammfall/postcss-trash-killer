@@ -78,3 +78,6 @@ module.exports = {
   ]
 }
 ```
+
+## Note!
+This plugin in addition remove empty media queries!

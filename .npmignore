@@ -1,4 +1,12 @@
 .github
 .idea
-test
+tests
 coverage
+/**/*.test.*
+testData
+.travis.yml
+.editorconfig
+.eslintrc
+.gitignore
+LICENSE
+README.md
