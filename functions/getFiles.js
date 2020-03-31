@@ -6,9 +6,10 @@ const fs = require('fs');
 /**
  * @param {string} pathName - path to files for parse
  * @param {string[]} exts - array of extension files. Example: ['.js', '.ts']
- * @return {string[]} - array files with extensions
+ * @returns {string[]} - array files with extensions
  */
 const getFiles = (pathName, exts) => {
+  // if (fs.existsSync(pathName)) {
   const files = fs.readdirSync(pathName);
 
   return flatMap(files, file => {
@@ -24,6 +25,9 @@ const getFiles = (pathName, exts) => {
     }
     return [];
   });
+  // }
+
+  // throw new Error('One or more your path does not exist');
 };
 
 module.exports = getFiles;

@@ -7,6 +7,7 @@
   },
   "extends": [
     "airbnb-base",
+    "plugin:jsdoc/recommended",
     "prettier"
   ],
   "globals": {
@@ -17,7 +18,8 @@
     "ecmaVersion": 2018
   },
   "plugins": [
-    "jest"
+    "jest",
+    "jsdoc"
   ],
   "rules": {
     "jest/no-disabled-tests": "warn",

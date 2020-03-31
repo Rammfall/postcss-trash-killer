@@ -22,12 +22,42 @@ html {
   -ms-overflow-style: scrollbar;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }
 
 @media (min-width: 576px) {
@@ -63,6 +93,23 @@ html {
   margin-left: -15px;
 }
 
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.no-gutters > [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.col-12, .col-md-10 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 .col-12 {
   -ms-flex: 0 0 100%;
   flex: 0 0 100%;
@@ -79,7 +126,11 @@ html {
     margin-left: 8.333333%;
   }
 }`,
-      'bootstrap'
+      'bootstrap',
+      false
     );
+
+    /* Duplicates selectors in this test related in bootstrap. Bootstrap have this duplicates.
+     * Im sure cssnano clean this:) */
   });
 });

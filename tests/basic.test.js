@@ -26,19 +26,21 @@ describe('Basic usage', () => {
   });
 });
 
-describe('Check plugin with html tagSelectors true', () => {
+describe('Check plugin with html tagSelectors false', () => {
   test('Must dont remove rules with html tags', () => {
     run(
       'body { color: red; } html { height: 100vh; }',
-      'body { color: red; } html { height: 100vh; }'
+      'body { color: red; } html { height: 100vh; }',
+      'basic',
+      false
     );
   });
 
   test('Must remove with false argument', () => {
-    run('h3 { color: red; } h4 { height: 100vh; }', '');
+    run('h3 { color: red; } h4 { height: 100vh; }', '', 'basic', false);
   });
 
   test('Must not remove difficult selectors with usage', () => {
-    run('h3.test { color: red; } h4 { height: 100vh; }', '');
+    run('h3.test { color: red; } h4 { height: 100vh; }', '', 'basic', false);
   });
 });

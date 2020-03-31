@@ -64,11 +64,13 @@ After **install** add this plugin to your plugin 'pipeline'
 // postcss.config.js
 const autoprefixer = require('autoprefixer');
 const cssTrashKiller = require('postcss-trash-killer');
+
 const configForCleaner = {
   tagSelectors: false, // default true, include all simple tag selectors(html, body, *, h1, but not `.className h1`
   fileExtensions: ['.haml', '.js'], // File types for scanning selectors
   paths: ['app/view/', 'some/second/path'], // Paths with your view files
-  libs: ['slick-carousel'] // Include lib, who work with view and installed via npm(yarn) and located in node_modules in root dir
+  libs: ['slick-carousel'], // Include lib, who work with view and installed via npm(yarn) and located in node_modules in root dir
+  libsExtension: ['.js'] // File types for libraries
 };
 
 module.exports = {
