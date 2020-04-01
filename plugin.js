@@ -72,8 +72,6 @@ const plugin = options => css => {
 
       if (!regexForAttributeSelector.test(selector)) {
         res = getWords(selector, regex).every(word => {
-          console.log(content.includes(word), word);
-
           return content.includes(word);
         });
       } else {
