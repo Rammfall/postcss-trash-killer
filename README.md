@@ -73,7 +73,8 @@ const configForCleaner = {
   paths: ['app/view/', 'some/second/path'], // Paths with your view files
   libs: ['slick-carousel'], // Include lib, who work with view and installed via npm(yarn) and located in node_modules in root dir
   libsExtension: ['.js'], // File types for libraries
-  whitelist: ['dontTouchSelector'] // not removable selectors
+  whitelist: ['dontTouchSelector'], // not removable selectors
+  dynamicSelectors: ['theme-color'] // If you use dynamic selectors, insert here part of selector. Not removed all selectors if contains 'theme-color' part
 };
 
 module.exports = {

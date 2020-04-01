@@ -2,6 +2,7 @@ const getFiles = require('./functions/getFiles');
 const getContent = require('./functions/getContent');
 const getWords = require('./functions/getWords');
 const getLibFiles = require('./functions/getLibFiles');
+const includesPart = require('./functions/includesPart');
 
 const { regex, regexForAttributeSelector } = require('./config/index');
 const htmlTags = require('./lists/html-tags');
@@ -13,7 +14,8 @@ const DEFAULT_OPTIONS = {
   whitelist: [],
   tagSelectors: true,
   libs: [],
-  libsExtensions: []
+  libsExtensions: [],
+  dynamicSelectors: []
 };
 
 /**
@@ -24,6 +26,7 @@ const DEFAULT_OPTIONS = {
  * @param {boolean} options.tagSelectors Support all tag selector
  * @param {string[]} options.libs Paths to libs (exclude 'node_modules' path)
  * @param {string[]} options.libsExtension Extensions to libs
+ * @param {string[]} options.dynamicSelectors Extensions to libs
  * @returns {function(...[*]=)} returns postcss plugin
  */
 const plugin = options => css => {
@@ -33,7 +36,8 @@ const plugin = options => css => {
     whitelist,
     tagSelectors,
     libs,
-    libsExtensions
+    libsExtensions,
+    dynamicSelectors
   } = Object.assign(DEFAULT_OPTIONS, options);
   let allSelectors = [].concat(whitelist);
 
@@ -41,6 +45,7 @@ const plugin = options => css => {
   if (tagSelectors === true) {
     allSelectors = allSelectors.concat(htmlTags);
   }
+  let dynamic = dynamicSelectors.map(item => item.toLowerCase());
 
   let content = paths.reduce(
     (prev, current) => {
@@ -71,9 +76,13 @@ const plugin = options => css => {
       let res;
 
       if (!regexForAttributeSelector.test(selector)) {
-        res = getWords(selector, regex).every(word => {
-          return content.includes(word);
-        });
+        if (includesPart(dynamic, selector)) {
+          return true;
+        } else {
+          res = getWords(selector, regex).every(word => {
+            return content.includes(word);
+          });
+        }
       } else {
         res = true;
       }

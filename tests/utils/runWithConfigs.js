@@ -9,6 +9,7 @@ const plugin = require('../../index');
  * @param {string[]} libs folder in test folder(default basic)
  * @param {string[]} libsExtensions folder in test folder(default basic)
  * @param {string[]} whitelist Selectors that must be been in project
+ * @param {string[]} dynamicSelectors Selectors that must be been in project
  * @param {boolean} tagSelectors Support tag selector
  */
 function run(
@@ -18,6 +19,7 @@ function run(
   libs = [],
   libsExtensions = [],
   whitelist = [],
+  dynamicSelectors = [],
   tagSelectors = true
 ) {
   const paths = folder.map(item => `testData/plugin/${item}/`);
@@ -27,7 +29,8 @@ function run(
     tagSelectors,
     libs,
     libsExtensions,
-    whitelist
+    whitelist,
+    dynamicSelectors
   };
 
   expect(postcss([plugin(options)]).process(input).css).toBe(output);

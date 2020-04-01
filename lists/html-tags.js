@@ -134,5 +134,8 @@ module.exports = [
   'var',
   'video',
   'wbr',
-  'xmp'
+  'xmp',
+  'odd',
+  'even',
+  'n'
 ];
