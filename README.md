@@ -1,3 +1,5 @@
+![Travis CI on linux](https://img.shields.io/travis/com/rammfall/postcss-trash-killer?style=for-the-badge)
+
 # This plugin will be kill your unused css
 
 ## Why do you need this?
@@ -70,7 +72,8 @@ const configForCleaner = {
   fileExtensions: ['.haml', '.js'], // File types for scanning selectors
   paths: ['app/view/', 'some/second/path'], // Paths with your view files
   libs: ['slick-carousel'], // Include lib, who work with view and installed via npm(yarn) and located in node_modules in root dir
-  libsExtension: ['.js'] // File types for libraries
+  libsExtension: ['.js'], // File types for libraries
+  whitelist: ['dontTouchSelector'] // not removable selectors
 };
 
 module.exports = {

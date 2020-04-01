@@ -41,15 +41,19 @@ const plugin = options => css => {
   if (tagSelectors === true) {
     allSelectors = allSelectors.concat(htmlTags);
   }
-  let content = paths.reduce((prev, current) => {
-    const result = new Set(
-      getWords(getContent(getFiles(current, fileExtensions)), regex).concat(
-        prev
-      )
-    );
 
-    return [...result];
-  }, allSelectors);
+  let content = paths.reduce(
+    (prev, current) => {
+      const result = new Set(
+        getWords(getContent(getFiles(current, fileExtensions)), regex).concat(
+          prev
+        )
+      );
+
+      return [...result];
+    },
+    allSelectors.map(item => item.toLowerCase())
+  );
 
   content = libs.reduce((prev, current) => {
     const result = new Set(
@@ -68,6 +72,8 @@ const plugin = options => css => {
 
       if (!regexForAttributeSelector.test(selector)) {
         res = getWords(selector, regex).every(word => {
+          console.log(content.includes(word), word);
+
           return content.includes(word);
         });
       } else {
