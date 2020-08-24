@@ -1,6 +1,6 @@
 {
   "name": "postcss-trash-killer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "PostCSS plugin for removing useless css",
   "main": "index.js",
   "scripts": {
@@ -54,8 +54,7 @@
   "lint-staged": {
     ".js": [
       "prettier --write",
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "husky": {
