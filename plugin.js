@@ -7,6 +7,7 @@ const includesPart = require('./functions/includesPart');
 const { regex, regexForAttributeSelector } = require('./config/index');
 const htmlTags = require('./lists/html-tags');
 const pseudo = require('./lists/pseudo');
+const pseudoWithArgs = require('./lists/pseudoWithArgs');
 
 const DEFAULT_OPTIONS = {
   paths: [],
@@ -41,12 +42,15 @@ const plugin = options => css => {
   } = Object.assign(DEFAULT_OPTIONS, options);
   let allSelectors = [].concat(whitelist);
 
+  // add to selectors pseudoclasses and pseudoelements
   allSelectors = allSelectors.concat(pseudo);
+  // if turn on html tags - add them to list
   if (tagSelectors === true) {
     allSelectors = allSelectors.concat(htmlTags);
   }
   let dynamic = dynamicSelectors.map(item => item.toLowerCase());
 
+  // all content from project files
   let content = paths.reduce(
     (prev, current) => {
       const result = new Set(
@@ -60,6 +64,7 @@ const plugin = options => css => {
     allSelectors.map(item => item.toLowerCase())
   );
 
+  // add content from project libs
   content = libs.reduce((prev, current) => {
     const result = new Set(
       getWords(getContent(getLibFiles(current, libsExtensions)), regex).concat(
@@ -74,15 +79,17 @@ const plugin = options => css => {
     // eslint-disable-next-line no-param-reassign
     rule.selectors = rule.selectors.filter(selector => {
       let res;
-
       if (!regexForAttributeSelector.test(selector)) {
         if (includesPart(dynamic, selector)) {
           return true;
-        } else {
-          res = getWords(selector, regex).every(word => {
-            return content.includes(word);
-          });
         }
+        // TODO: refactor this part
+        res = getWords(selector, regex).every((word, index, array) => {
+          if (index > 0 && includesPart(pseudoWithArgs, selector)) {
+            return array.slice(1).some(item => pseudoWithArgs.includes(item));
+          }
+          return content.includes(word);
+        });
       } else {
         res = true;
       }
@@ -90,9 +97,13 @@ const plugin = options => css => {
       return res;
     });
 
-    if (rule.selectors.length === 1 && rule.selectors[0] === '') rule.remove();
+    // remove empty rules
+    if (rule.selectors.length === 1 && rule.selectors[0] === '') {
+      rule.remove();
+    }
   });
 
+  // if media rule have 0 rules - remove it
   css.walkAtRules('media', atRule => {
     if (atRule.nodes.length === 0) {
       atRule.remove();

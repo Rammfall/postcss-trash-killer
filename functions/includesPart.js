@@ -4,7 +4,7 @@
  * @returns {boolean} return boolean, if word contains in array
  */
 const includesPart = (arr, word) => {
-  return arr.some(item => word.indexOf(item));
+  return arr.some(item => word.indexOf(item) !== -1);
 };
 
 module.exports = includesPart;
